@@ -1,0 +1,34 @@
+<html>
+<head>
+    <style>
+
+    </style>
+</head>
+<body>
+<h3 align="center">上传图片，并转换为base64，这样体积会多出三分之一</h3>
+<hr>
+<input id="inp" type="file">
+
+<p id="b64"></p>
+<img id="img">
+<script type="text/javascript">
+    function EL(id) {
+        return document.getElementById(id);
+    } // Get el by ID helper function
+
+    function readFile() {
+        if (this.files && this.files[0]) {
+            var FR = new FileReader();
+            FR.onload = function (e) {
+                EL("img").src = e.target.result;
+                EL("b64").innerHTML = e.target.result;
+            };
+            FR.readAsDataURL(this.files[0]);
+        }
+    }
+
+    EL("inp").addEventListener("change", readFile, false);
+</script>
+
+</body>
+</html>
